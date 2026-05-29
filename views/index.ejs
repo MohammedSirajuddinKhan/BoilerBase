@@ -1,107 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <main class="app-shell">
-    <section class="home-layout">
-      <header class="masthead">
-        <div>
-          <span class="eyebrow">BoilerBase</span>
-          <h1>Create a backend starter in one clean step.</h1>
-          <p>
-            Pick a stack, generate the scaffold, then review it on a dedicated preview page
-            before downloading the ZIP.
-          </p>
-        </div>
-        <div class="masthead-aside">
-          <div class="mini-stat">
-            <span>Output</span>
-            <strong>ZIP project</strong>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="home-layout">
+        <header class="masthead">
+          <div>
+            <span class="eyebrow">BoilerBase</span>
+            <h1>Create a backend starter in one clean step.</h1>
+            <p>
+              Pick a stack, generate the scaffold, then review it on a dedicated
+              preview page before downloading the ZIP.
+            </p>
           </div>
-          <div class="mini-stat">
-            <span>Flow</span>
-            <strong>Generate, preview & download</strong>
+          <div class="masthead-aside">
+            <div class="mini-stat">
+              <span>Output</span>
+              <strong>ZIP project</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Flow</span>
+              <strong>Generate, preview & download</strong>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <section class="builder-grid">
-        <form class="panel form-panel" action="/generate" method="POST">
-          <div class="section-head">
-            <span class="section-kicker">Project Settings</span>
-            <h2>Configure the scaffold</h2>
-          </div>
+        <section class="builder-grid">
+          <form class="panel form-panel" action="/generate" method="POST">
+            <div class="section-head">
+              <span class="section-kicker">Project Settings</span>
+              <h2>Configure the scaffold</h2>
+            </div>
 
-          <div class="field-grid">
-            <label class="field field-span-2">
-              <span>Project Name</span>
-              <input type="text" name="projectName" id="projectName" placeholder="Enter Project Name" required>
-            </label>
+            <div class="field-grid">
+              <label class="field field-span-2">
+                <span>Project Name</span>
+                <input
+                  type="text"
+                  name="projectName"
+                  id="projectName"
+                  placeholder="Enter Project Name"
+                  required
+                />
+              </label>
 
-            <label class="field">
-              <span>Database Choice</span>
-              <select name="databaseChoice" id="databaseChoice">
-                <option value="MongoDB" selected>MongoDB</option>
-                <option value="None">None</option>
-              </select>
-            </label>
+              <label class="field">
+                <span>Database Choice</span>
+                <select name="databaseChoice" id="databaseChoice">
+                  <option value="MongoDB" selected>MongoDB</option>
+                  <option value="None">None</option>
+                </select>
+              </label>
 
-            <label class="field">
-              <span>Authentication Type</span>
-              <select name="authenticationType" id="authenticationType">
-                <option value="JWT" selected>JWT</option>
-                <option value="None">None</option>
-              </select>
-            </label>
+              <label class="field">
+                <span>Authentication Type</span>
+                <select name="authenticationType" id="authenticationType">
+                  <option value="JWT" selected>JWT</option>
+                  <option value="None">None</option>
+                </select>
+              </label>
 
-            <label class="field">
-              <span>Template Engine</span>
-              <select name="templateEngine" id="templateEngine">
-                <option value="EJS" selected>EJS</option>
-                <option value="HTML">HTML</option>
-              </select>
-            </label>
+              <label class="field">
+                <span>Template Engine</span>
+                <select name="templateEngine" id="templateEngine">
+                  <option value="EJS" selected>EJS</option>
+                  <option value="HTML">HTML</option>
+                </select>
+              </label>
 
-            <label class="field">
-              <span>CSS Framework</span>
-              <select name="cssFramework" id="cssFramework">
-                <option value="Vanilla CSS" selected>Vanilla CSS</option>
-                <option value="Bootstrap">Bootstrap</option>
-              </select>
-            </label>
-          </div>
+              <label class="field">
+                <span>CSS Framework</span>
+                <select name="cssFramework" id="cssFramework">
+                  <option value="Vanilla CSS" selected>Vanilla CSS</option>
+                  <option value="Bootstrap">Bootstrap</option>
+                </select>
+              </label>
+            </div>
 
-          <div class="checkbox-grid">
-            <label class="checkbox">
-              <input type="checkbox" name="includeMVCStructure" checked>
-              <span>Include MVC Structure</span>
-            </label>
-            <label class="checkbox">
-              <input type="checkbox" name="includeAuthSystem" checked>
-              <span>Include Auth System</span>
-            </label>
-            <label class="checkbox">
-              <input type="checkbox" name="includeREADME" checked>
-              <span>Include README</span>
-            </label>
-          </div>
+            <div class="checkbox-grid">
+              <label class="checkbox">
+                <input type="checkbox" name="includeMVCStructure" checked />
+                <span>Include MVC Structure</span>
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="includeAuthSystem" checked />
+                <span>Include Auth System</span>
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="includeREADME" checked />
+                <span>Include README</span>
+              </label>
+            </div>
 
-          <button class="button button-primary" type="submit">
-            Generate Project
-          </button>
-        </form>
+            <button class="button button-primary" type="submit">
+              Generate Project
+            </button>
+          </form>
+        </section>
       </section>
-    </section>
-  </main>
+    </main>
 
-  <script src="/js/main.js"></script>
-</body>
+    <script src="/js/main.js"></script>
+  </body>
 </html>
