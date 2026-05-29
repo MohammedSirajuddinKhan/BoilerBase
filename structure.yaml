@@ -1,0 +1,155 @@
+├── /generated-projects
+│   └── (temporary generated projects)
+│
+├── /controllers
+│   │
+│   └── generateController.js
+│
+├── /routes
+│   │
+│   └── generateRoutes.js
+│
+├── /generators
+│   │
+│   ├── createProject.js
+│   ├── createFolders.js
+│   ├── createFiles.js
+│   ├── createServerFile.js
+│   ├── createPackageJson.js
+│   ├── createEnvFile.js
+│   ├── createMongoConfig.js
+│   ├── createAuthFiles.js
+│   ├── createViews.js
+│   ├── createPublicFiles.js
+│   ├── createReadme.js
+│   ├── zipProject.js
+│   └── templates.js
+│
+├── /templates
+│   │
+│   ├── serverTemplate.js
+│   ├── packageTemplate.js
+│   ├── envTemplate.js
+│   ├── dbTemplate.js
+│   ├── authTemplate.js
+│   ├── modelTemplate.js
+│   ├── routeTemplate.js
+│   ├── viewTemplate.js
+│   ├── cssTemplate.js
+│   └── readmeTemplate.js
+│
+├── /middlewares
+│   │
+│   └── errorMiddleware.js
+│
+├── /utils
+│   │
+│   ├── helper.js
+│   ├── constants.js
+│   └── pathUtils.js
+│
+├── /views
+│   │
+│   ├── index.ejs
+│   ├── success.ejs
+│   └── error.ejs
+│
+├── /public
+│   │
+│   ├── /css
+│   │   └── style.css
+│   │
+│   ├── /js
+│   │   └── main.js
+│   │
+│   └── /images
+│
+├── .env
+├── .gitignore
+├── app.js
+├── package.json
+├── package-lock.json
+└── README.md
+
+prompt:
+
+On the Preview Page, display the generated project folder structure in a professional tree-style structure exactly like a real developer file explorer.
+
+IMPORTANT REQUIREMENTS:
+
+1. The folder structure preview must visually look like:
+
+   * VS Code explorer
+   * GitHub repository tree
+   * Real terminal/file explorer structure
+
+2. Use:
+
+   * Monospace font
+   * Proper indentation
+   * Vertical hierarchy
+   * Folder/file icons
+   * Collapsible feel (optional)
+   * Clean spacing
+
+3. Example structure style:
+
+MyApp
+├── config
+│   └── db.js
+├── controllers
+├── middleware
+│   └── authMiddleware.js
+├── models
+│   └── User.js
+├── routes
+│   └── authRoutes.js
+├── views
+│   ├── index.ejs
+│   ├── login.ejs
+│   └── register.ejs
+├── public
+│   ├── css
+│   │   └── style.css
+│   └── js
+│       └── main.js
+├── .env
+├── package.json
+├── server.js
+└── README.md
+
+4. UI/UX REQUIREMENTS:
+
+   * Display the structure inside a professional dark card
+   * Use subtle borders
+   * Use small realistic font sizes
+   * Proper line-height
+   * Realistic developer-tool appearance
+   * Slight hover effect on rows
+   * Minimal design
+   * No oversized spacing
+   * No fake glowing effects
+
+5. COLORS:
+
+   * Folder names slightly highlighted
+   * File names softer
+   * Tree lines subtle
+   * Match the existing dark SaaS UI
+
+6. VERY IMPORTANT:
+
+   * The structure must feel human-designed
+   * Avoid AI-template appearance
+   * Maintain proper alignment
+   * Ensure indentation is perfectly consistent
+   * Make it look like an actual project preview system
+
+7. IMPLEMENTATION:
+
+   * Generate the HTML structure dynamically
+   * Style using CSS only
+   * Keep it responsive
+   * Ensure long structures remain readable
+
+Generate the complete improved HTML + CSS for the folder tree preview component professionally.

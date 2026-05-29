@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || "Error" %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="error-shell">
+    <section class="glass-panel error-card">
+      <span class="section-kicker">Something went wrong</span>
+      <h1><%= title || "Generation Failed" %></h1>
+      <p><%= message || "We could not generate the project right now." %></p>
+      <a class="generate-btn error-btn" href="/">Back to Generator</a>
+    </section>
+  </main>
+</body>
+</html>

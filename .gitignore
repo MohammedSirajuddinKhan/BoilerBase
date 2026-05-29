@@ -1,0 +1,5 @@
+node_modules/
+generated-projects/*
+!generated-projects/.gitkeep
+npm-debug.log*
+.env
