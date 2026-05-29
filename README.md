@@ -1,32 +1,47 @@
 # BoilerBase
 
-A modern Node.js and Express app that lets users generate downloadable starter backend projects with a polished dark SaaS-style UI.
+A modern beginner-friendly backend scaffolding CLI for Node.js developers.
 
-## Live Demo
-
-[https://boilerbase.com](https://boilerbase.onrender.com)
-
-## Run
+## Install
 
 ```bash
 npm install
-npm run dev
+npm link
+```
+
+## Usage
+
+```bash
+npx boilerbase
+# or
+boilerbase
 ```
 
 ## What it does
 
-- Accepts project configuration from a frontend form
-- Creates a dynamic starter project structure
-- Writes backend files, views, styles, auth scaffolding, and README output
-- Packages the generated app into a ZIP file and downloads it automatically
+- Prompts for project settings in the terminal
+- Generates folders and starter files dynamically
+- Installs dependencies automatically
+- Opens the generated project in VS Code
 
 ## Stack
 
 - Node.js
-- Express.js
-- EJS
-- dotenv
-- archiver
+- inquirer
+- chalk
+- ora
 - fs-extra
 
-### Future changes will be made
+## Generated project
+
+The generated backend starter includes:
+
+- Express server scaffold
+- Optional MongoDB config
+- JWT auth routes and middleware
+- EJS or HTML views
+- CSS starter file and public assets
+
+## Publish
+
+This package is ready for `npm link`, `npm publish`, and `npx boilerbase`.

@@ -1,20 +1,25 @@
 {
   "name": "boilerbase",
   "version": "1.0.0",
-  "description": "A modern full-stack project generator for Node.js starter apps",
-  "main": "app.js",
+  "description": "A minimal developer CLI for generating backend starter projects",
+  "main": "./bin/index.js",
+  "bin": {
+    "boilerbase": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "generators",
+    "templates",
+    "utils",
+    "README.md"
+  ],
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node ./bin/index.js"
   },
   "dependencies": {
-    "archiver": "^7.0.1",
-    "dotenv": "^16.5.0",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "fs-extra": "^11.3.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^8.2.7",
+    "ora": "^5.4.1"
   }
 }

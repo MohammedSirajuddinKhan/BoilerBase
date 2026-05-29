@@ -14,7 +14,7 @@ const sanitizeProjectName = (value = "") => {
 const toPackageName = (value = "") => sanitizeProjectName(value).toLowerCase();
 
 const getProjectPath = (baseDir, projectName) =>
-  path.join(baseDir, "generated-projects", sanitizeProjectName(projectName));
+  path.join(baseDir, sanitizeProjectName(projectName));
 
 module.exports = {
   sanitizeProjectName,

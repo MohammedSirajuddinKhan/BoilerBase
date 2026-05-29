@@ -1,4 +1,3 @@
-const path = require("path");
 const fs = require("fs-extra");
 
 const createFolders = require("./createFolders");
@@ -8,9 +7,19 @@ const { getProjectPath, sanitizeProjectName } = require("../utils/pathUtils");
 const createProject = async (options) => {
   const displayProjectName = options.projectName.trim();
   const projectName = sanitizeProjectName(displayProjectName);
-  const projectPath = getProjectPath(path.join(__dirname, ".."), projectName);
+  const targetDirectory = options.targetDirectory || process.cwd();
+  const projectPath = getProjectPath(targetDirectory, projectName);
 
-  await fs.remove(projectPath);
+  if (await fs.pathExists(projectPath)) {
+    const contents = await fs.readdir(projectPath);
+
+    if (contents.length > 0) {
+      throw new Error(
+        `The folder "${projectName}" already exists and is not empty.`,
+      );
+    }
+  }
+
   await fs.ensureDir(projectPath);
 
   await createFolders(projectPath, options);

@@ -1,7 +1,8 @@
 const { sanitizeProjectName, toPackageName } = require("../utils/pathUtils");
 
 const isMongoDB = (options) => options.databaseChoice === "MongoDB";
-const isAuthEnabled = (options) => options.includeAuthSystem && options.authenticationType === "JWT";
+const isAuthEnabled = (options) =>
+  options.includeAuthSystem && options.authenticationType === "JWT";
 const isEJS = (options) => options.templateEngine === "EJS";
 const isBootstrap = (options) => options.cssFramework === "Bootstrap";
 const isMVC = (options) => options.includeMVCStructure;
@@ -14,14 +15,8 @@ const buildPackageTemplate = (options) => {
     dotenv: "^16.5.0",
   };
 
-  if (isEJS(options)) {
-    dependencies.ejs = "^3.1.10";
-  }
-
-  if (isMongoDB(options)) {
-    dependencies.mongoose = "^8.15.0";
-  }
-
+  if (isEJS(options)) dependencies.ejs = "^3.1.10";
+  if (isMongoDB(options)) dependencies.mongoose = "^8.15.0";
   if (isAuthEnabled(options)) {
     dependencies.jsonwebtoken = "^9.0.2";
     dependencies.bcryptjs = "^3.0.2";
@@ -48,18 +43,17 @@ const buildPackageTemplate = (options) => {
 };
 
 const buildEnvTemplate = (options) => {
-  const lines = [
-    `PORT=3000`,
-    `NODE_ENV=development`,
-  ];
+  const lines = ["PORT=3000", "NODE_ENV=development"];
 
   if (isMongoDB(options)) {
-    lines.push(`MONGO_URI=mongodb://127.0.0.1:27017/${toPackageName(options.projectName)}`);
+    lines.push(
+      `MONGO_URI=mongodb://127.0.0.1:27017/${toPackageName(options.projectName)}`,
+    );
   }
 
   if (isAuthEnabled(options)) {
-    lines.push(`JWT_SECRET=replace-with-a-strong-secret`);
-    lines.push(`JWT_EXPIRES_IN=7d`);
+    lines.push("JWT_SECRET=replace-with-a-strong-secret");
+    lines.push("JWT_EXPIRES_IN=7d");
   }
 
   return `${lines.join("\n")}\n`;
@@ -75,7 +69,7 @@ const buildDbTemplate = (options) => {
 
 const buildHomeControllerTemplate = (options) => {
   if (isEJS(options)) {
-    return `const renderHome = (req, res) => {\n  res.render('index', {\n    pageTitle: 'AI Project Starter Generator',\n    featureLabel: 'Developer-ready starter project',\n  });\n};\n\nmodule.exports = {\n  renderHome,\n};\n`;
+    return `const renderHome = (req, res) => {\n  res.render('index', {\n    pageTitle: 'BoilerBase',\n    featureLabel: 'Developer-ready starter project',\n  });\n};\n\nmodule.exports = {\n  renderHome,\n};\n`;
   }
 
   return `const path = require('path');\n\nconst renderHome = (req, res) => {\n  res.sendFile(path.join(__dirname, '../views/index.html'));\n};\n\nmodule.exports = {\n  renderHome,\n};\n`;
@@ -87,21 +81,21 @@ const buildIndexRouteTemplate = () => {
 
 const buildServerTemplate = (options) => {
   const lines = [
-    `require('dotenv').config();`,
-    `const path = require('path');`,
-    `const express = require('express');`,
+    "require('dotenv').config();",
+    "const path = require('path');",
+    "const express = require('express');",
   ];
 
   if (isMongoDB(options)) {
-    lines.push(`const connectDB = require('./config/db');`);
+    lines.push("const connectDB = require('./config/db');");
   }
 
   if (isMVC(options)) {
-    lines.push(`const homeRoutes = require('./routes/index');`);
+    lines.push("const homeRoutes = require('./routes/index');");
   }
 
   if (isAuthEnabled(options)) {
-    lines.push(`const authRoutes = require('./routes/authRoutes');`);
+    lines.push("const authRoutes = require('./routes/authRoutes');");
   }
 
   lines.push(
@@ -132,7 +126,7 @@ const buildServerTemplate = (options) => {
       "",
       "app.get('/', (req, res) => {",
       "  res.render('index', {",
-      "    pageTitle: 'AI Project Starter Generator',",
+      "    pageTitle: 'BoilerBase',",
       "    featureLabel: 'Developer-ready starter project',",
       "  });",
       "});",
@@ -160,7 +154,7 @@ const buildServerTemplate = (options) => {
     "});",
     "",
     "app.listen(PORT, () => {",
-    "  console.log(`Server running on port ${PORT}`);",
+    "  console.log('Server running on port ' + PORT);",
     "});",
   );
 
@@ -191,16 +185,15 @@ const buildIndexViewTemplate = (options) => {
   const bootstrapLink = isBootstrap(options)
     ? `  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'>\n`
     : "";
-  const extension = getViewExtension(options);
   const actionCopy = isEJS(options)
     ? `<span><%= featureLabel %></span>`
     : `<span>Developer-ready starter project</span>`;
 
   if (isEJS(options)) {
-    return `<!DOCTYPE html>\n<html lang='en'>\n<head>\n  <meta charset='UTF-8'>\n  <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n  <title><%= pageTitle %></title>\n${bootstrapLink}  <link rel='stylesheet' href='/css/style.css'>\n</head>\n<body>\n  <main class='page-shell'>\n    <section class='hero-card'>\n      <div class='hero-badge'>AI Starter Project</div>\n      <h1>Project scaffold ready in seconds.</h1>\n      <p>${actionCopy}</p>\n      <div class='hero-grid'>\n        <article>\n          <strong>MongoDB-ready</strong>\n          <span>Config, models, and environment setup included.</span>\n        </article>\n        <article>\n          <strong>Auth-friendly</strong>\n          <span>JWT routes and middleware are scaffolded when enabled.</span>\n        </article>\n        <article>\n          <strong>Responsive UI</strong>\n          <span>Built with a polished, mobile-ready starter layout.</span>\n        </article>\n      </div>\n    </section>\n  </main>\n  <script src='/js/main.js'></script>\n</body>\n</html>\n`;
+    return `<!DOCTYPE html>\n<html lang='en'>\n<head>\n  <meta charset='UTF-8'>\n  <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n  <title><%= pageTitle %></title>\n${bootstrapLink}  <link rel='stylesheet' href='/css/style.css'>\n</head>\n<body>\n  <main class='page-shell'>\n    <section class='hero-card'>\n      <div class='hero-badge'>BoilerBase Starter</div>\n      <h1>Project scaffold ready in seconds.</h1>\n      <p>${actionCopy}</p>\n      <div class='hero-grid'>\n        <article>\n          <strong>MongoDB-ready</strong>\n          <span>Config, models, and environment setup included.</span>\n        </article>\n        <article>\n          <strong>Auth-friendly</strong>\n          <span>JWT routes and middleware are scaffolded when enabled.</span>\n        </article>\n        <article>\n          <strong>Responsive UI</strong>\n          <span>Built with a polished, mobile-ready starter layout.</span>\n        </article>\n      </div>\n    </section>\n  </main>\n  <script src='/js/main.js'></script>\n</body>\n</html>\n`;
   }
 
-  return `<!DOCTYPE html>\n<html lang='en'>\n<head>\n  <meta charset='UTF-8'>\n  <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n  <title>AI Project Starter Generator</title>\n${bootstrapLink}  <link rel='stylesheet' href='/css/style.css'>\n</head>\n<body>\n  <main class='page-shell'>\n    <section class='hero-card'>\n      <div class='hero-badge'>AI Starter Project</div>\n      <h1>Project scaffold ready in seconds.</h1>\n      <p>Developer-ready starter project</p>\n      <div class='hero-grid'>\n        <article>\n          <strong>MongoDB-ready</strong>\n          <span>Config, models, and environment setup included.</span>\n        </article>\n        <article>\n          <strong>Auth-friendly</strong>\n          <span>JWT routes and middleware are scaffolded when enabled.</span>\n        </article>\n        <article>\n          <strong>Responsive UI</strong>\n          <span>Built with a polished, mobile-ready starter layout.</span>\n        </article>\n      </div>\n    </section>\n  </main>\n  <script src='/js/main.js'></script>\n</body>\n</html>\n`;
+  return `<!DOCTYPE html>\n<html lang='en'>\n<head>\n  <meta charset='UTF-8'>\n  <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n  <title>BoilerBase</title>\n${bootstrapLink}  <link rel='stylesheet' href='/css/style.css'>\n</head>\n<body>\n  <main class='page-shell'>\n    <section class='hero-card'>\n      <div class='hero-badge'>BoilerBase Starter</div>\n      <h1>Project scaffold ready in seconds.</h1>\n      <p>Developer-ready starter project</p>\n      <div class='hero-grid'>\n        <article>\n          <strong>MongoDB-ready</strong>\n          <span>Config, models, and environment setup included.</span>\n        </article>\n        <article>\n          <strong>Auth-friendly</strong>\n          <span>JWT routes and middleware are scaffolded when enabled.</span>\n        </article>\n        <article>\n          <strong>Responsive UI</strong>\n          <span>Built with a polished, mobile-ready starter layout.</span>\n        </article>\n      </div>\n    </section>\n  </main>\n  <script src='/js/main.js'></script>\n</body>\n</html>\n`;
 };
 
 const buildLoginViewTemplate = (options) => {
@@ -228,7 +221,7 @@ const buildReadmeTemplate = (options) => {
     `- ${options.cssFramework} styling`,
   ];
 
-  return `# ${options.displayProjectName || options.projectName}\n\nGenerated by AI Project Starter Generator.\n\n## Included\n${features.join("\n")}\n\n## Run\n\`\`\`bash\nnpm install\nnpm run dev\n\`\`\`\n`;
+  return `# ${options.displayProjectName || options.projectName}\n\nGenerated by BoilerBase CLI.\n\n## Included\n${features.join("\n")}\n\n## Run\n\`\`\`bash\nnpm install\nnpm run dev\n\`\`\`\n`;
 };
 
 const buildPublicCssTemplate = (options) => {
@@ -238,7 +231,7 @@ const buildPublicCssTemplate = (options) => {
 };
 
 const buildPublicJsTemplate = () => {
-  return `document.addEventListener('DOMContentLoaded', () => {\n  document.body.classList.add('is-ready');\n\n  const cards = document.querySelectorAll('.hero-grid article, .form-card, .stats-card');\n  cards.forEach((card, index) => {\n    card.style.animationDelay = \`\${index * 90}ms\`;\n    card.classList.add('reveal');\n  });\n});\n`;
+  return `document.addEventListener('DOMContentLoaded', () => {\n  document.body.classList.add('is-ready');\n\n  const cards = document.querySelectorAll('.hero-grid article, .form-card, .stats-card');\n  cards.forEach((card, index) => {\n    card.style.animationDelay = String(index * 90) + 'ms';\n    card.classList.add('reveal');\n  });\n});\n`;
 };
 
 module.exports = {
