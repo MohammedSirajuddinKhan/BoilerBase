@@ -4,7 +4,7 @@ A modern Node.js and Express app that lets users generate downloadable starter b
 
 ## Live Demo
 
-https://boilerbase.onrender.com
+[https://boilerbase.com](https://boilerbase.onrender.com)
 
 ## Run
 
