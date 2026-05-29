@@ -13,8 +13,11 @@ const run = async () => {
   await fs.ensureDir(path.dirname(zipPath));
   await fs.remove(zipPath);
 
+  const tempZipPath = `${zipPath}.part`;
+  await fs.remove(tempZipPath);
+
   await new Promise((resolve, reject) => {
-    const output = fs.createWriteStream(zipPath);
+    const output = fs.createWriteStream(tempZipPath);
     const archive = archiver("zip", { zlib: { level: 9 } });
 
     output.on("close", resolve);
@@ -25,6 +28,8 @@ const run = async () => {
     archive.directory(projectPath, path.basename(projectPath));
     archive.finalize();
   });
+
+  await fs.move(tempZipPath, zipPath, { overwrite: true });
 };
 
 run()
